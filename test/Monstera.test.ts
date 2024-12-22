@@ -1,19 +1,33 @@
 import { expect } from 'chai';
 import hre from 'hardhat';
+import { loadFixture } from '@nomicfoundation/hardhat-toolbox/network-helpers';
 
 describe('Monstera contract', async () => {
-  let owner: string;
-  let hardhatToken: any;
-
-  beforeEach(async () => {
-    const [signer] = await hre.ethers.getSigners();
-    owner = signer.address;
+  const deployTokenFixture = async () => {
+    const [owner, address1, address2] = await hre.ethers.getSigners();
     const MonsToken = await hre.ethers.getContractFactory('Monstera');
-    hardhatToken = await MonsToken.deploy();
+    const hardhatToken = await MonsToken.deploy();
+
+    return { MonsToken, hardhatToken, owner, address1, address2 };
+  };
+
+  it('Deployment should assign total supply of tokens to owner', async () => {
+    const { hardhatToken, owner } = await loadFixture(deployTokenFixture);
+
+    const ownerBalance = await hardhatToken.balanceOf(owner.address);
+    expect(await hardhatToken.totalSupply()).to.equal(ownerBalance);
   });
 
-  it('check the owner balance', async () => {
-    const ownerBalance = await hardhatToken.balanceOf(owner);
-    expect(await hardhatToken.totalSupply()).to.equal(ownerBalance);
+  it('Should transfer tokens between accounts', async () => {
+    const { MonsToken, hardhatToken, owner, address1, address2 } =
+      await loadFixture(deployTokenFixture);
+
+    // Transfer 100 tokens to address 1
+    await hardhatToken.transfer(address1.address, 100);
+    expect(await hardhatToken.balanceOf(address1.address)).to.equal(100);
+
+    // Transfer 50 tokens from address 1 to address 2
+    await hardhatToken.connect(address1).transfer(address2.address, 50);
+    expect(await hardhatToken.balanceOf(address2.address)).to.equal(50);
   });
 });

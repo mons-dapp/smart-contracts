@@ -4,6 +4,18 @@
     npm init -y
 ```
 
+## Setup Prettier
+
+```
+    npm install --save-dev prettier prettier-plugin-solidity
+```
+
+- Add format smart contracts to package.json
+
+```
+    "format:contracts": "prettier --write --plugin=prettier-plugin-solidity contracts/**/*.sol"
+```
+
 ## Setup hardhat
 
 ```
@@ -13,13 +25,10 @@
     npx hardhat coverage
 ```
 
-## Setup Prettier
+## Setup Smart Contract
 
-```
-    npm install --save-dev prettier prettier-plugin-solidity
-```
-
-## Install OpenZeppelin
+- Install `Solidity` from `Nomic Foundation`
+- Install OpenZeppelin
 
 ```
     npm install @openzeppelin/contracts
