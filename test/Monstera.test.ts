@@ -6,7 +6,7 @@ describe('Monstera contract', async () => {
   const deployTokenFixture = async () => {
     const [owner, address1, address2] = await hre.ethers.getSigners();
     const MonsToken = await hre.ethers.getContractFactory('Monstera');
-    const hardhatToken = await MonsToken.deploy();
+    const hardhatToken = await MonsToken.deploy(); // deploy to hardhat blockchain test
 
     return { MonsToken, hardhatToken, owner, address1, address2 };
   };

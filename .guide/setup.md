@@ -16,6 +16,14 @@
     "format:contracts": "prettier --write --plugin=prettier-plugin-solidity contracts/**/*.sol"
 ```
 
+## Setup Dotenv
+
+- Create `.env` at root
+
+```
+    npm i dotenv -D
+```
+
 ## Setup hardhat
 
 ```
