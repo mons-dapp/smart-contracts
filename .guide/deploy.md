@@ -24,7 +24,7 @@
 ```
     etherscan: {
         apiKey: {
-        sepolia: 'your API key',
+            sepolia: 'your API key',
         },
     },
 ```

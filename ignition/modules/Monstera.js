@@ -1,9 +1,9 @@
 const { buildModule } = require('@nomicfoundation/hardhat-ignition/modules');
 
-const TokenModule = buildModule('MonsteraModule', (m) => {
-  const token = m.contract('Monstera');
+const Module = buildModule('MonsteraModule', (m) => {
+  const monsteraToken = m.contract('Monstera');
 
-  return { token };
+  return { monsteraToken };
 });
 
-module.exports = TokenModule;
+module.exports = Module;

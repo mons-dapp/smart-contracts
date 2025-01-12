@@ -19,7 +19,7 @@ describe('Monstera contract', async () => {
   });
 
   it('Should transfer tokens between accounts', async () => {
-    const { MonsToken, hardhatToken, owner, address1, address2 } =
+    const { hardhatToken, address1, address2 } =
       await loadFixture(deployTokenFixture);
 
     // Transfer 100 tokens to address 1

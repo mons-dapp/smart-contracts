@@ -9,10 +9,13 @@
   "scripts": {
     "test": "npx hardhat test",
     "test:cov": "npx hardhat coverage",
-    "deploy": "npx hardhat ignition deploy ./ignition/modules/Monstera.js",
-    "verify": "",
     "format": "prettier --write .",
-    "format:contracts": "prettier --write --plugin=prettier-plugin-solidity contracts/**/*.sol"
+    "format:contracts": "prettier --write --plugin=prettier-plugin-solidity contracts/**/*.sol",
+    "compile": "npx hardhat compile",
+    "deploy-token": "npx hardhat ignition deploy ./ignition/modules/Monstera.js",
+    "deploy-manager": "npx hardhat ignition deploy ./ignition/modules/MonsteraManager.js",
+    "deploy": "npm run deploy-token && npm run deploy-manager",
+    "verify": "npx hardhat verify <contract address>"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.1.0",
